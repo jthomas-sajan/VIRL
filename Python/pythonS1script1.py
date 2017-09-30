@@ -1,8 +1,10 @@
+#!/user/bin/env python
+
 import getpass
 import sys
 import telnetlib
 
-HOST = "172.16.2.55"
+HOST = "10.0.0.2"
 user = raw_input("Enter your Telnet username: ")
 password = getpass.getpass()
 
@@ -17,8 +19,13 @@ if password:
 tn.write("enable\n")
 tn.write("cisco\n")
 tn.write("conf t\n")
-tn.write("int loop 0\n")
-tn.write("ip address 1.1.1.1 255.255.255.255\n")
+tn.write("vlan 20\n")
+tn.write("name Python_VLAN_20\n")
+tn.write("exit\n")
+tn.write("vlan 21\n")
+tn.write("exit\n")
+tn.write("vlan 22\n")
+tn.write("exit\n")
 tn.write("end\n")
 tn.write("exit\n")
 
