@@ -555,6 +555,7 @@ end</entry>
     <node name="flat-1" type="ASSET" subtype="FLAT" location="538,257">
         <extensions>
             <entry key="host_network" type="String">flat1</entry>
+            <entry key="static_ip" type="String">172.16.2.55</entry>
         </extensions>
         <interface id="0" name="link0"/>
     </node>
