@@ -1,0 +1,4 @@
+ip name-server 8.8.8.8
+ip domain-lookup
+vlan 66
+name SWITCH

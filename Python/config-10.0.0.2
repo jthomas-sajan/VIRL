@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 3866 bytes
+Current configuration : 3891 bytes
 !
-! Last configuration change at 16:24:05 UTC Thu Oct 26 2017
+! Last configuration change at 15:38:58 UTC Thu Nov 2 2017
 !
 version 15.2
 service timestamps debug datetime msec
@@ -38,8 +38,8 @@ vtp mode transparent
 !
 !
 !
-no ip domain-lookup
 ip domain-name cisco.local
+ip name-server 8.8.8.8
 ip cef
 no ipv6 cef
 !
@@ -51,6 +51,9 @@ spanning-tree extend system-id
 vlan internal allocation policy ascending
 !
 vlan 2 
+!
+vlan 66
+ name SWITCH
 no cdp run
 !
 ! 

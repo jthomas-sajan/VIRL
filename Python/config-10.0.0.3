@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 3866 bytes
+Current configuration : 3681 bytes
 !
-! Last configuration change at 16:24:05 UTC Thu Oct 26 2017
+! Last configuration change at 16:03:28 UTC Thu Nov 2 2017 by james
 !
 version 15.2
 service timestamps debug datetime msec
@@ -10,7 +10,7 @@ service timestamps log datetime msec
 no service password-encryption
 service compress-config
 !
-hostname S1
+hostname S2
 !
 boot-start-marker
 boot-end-marker
@@ -38,8 +38,8 @@ vtp mode transparent
 !
 !
 !
-no ip domain-lookup
 ip domain-name cisco.local
+ip name-server 8.8.8.8
 ip cef
 no ipv6 cef
 !
@@ -50,7 +50,11 @@ spanning-tree extend system-id
 !
 vlan internal allocation policy ascending
 !
-vlan 2 
+vlan 2
+ name ank_vlan2
+!
+vlan 66
+ name SWITCH
 no cdp run
 !
 ! 
@@ -68,13 +72,13 @@ no cdp run
 !
 interface Loopback0
  description Loopback
- ip address 1.1.1.1 255.255.255.0
+ no ip address
 !
 interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 172.16.1.117 255.255.255.0
+ ip address 172.16.1.118 255.255.255.0
  negotiation auto
 !
 interface GigabitEthernet0/1
@@ -86,24 +90,12 @@ interface GigabitEthernet0/1
  negotiation auto
 !
 interface GigabitEthernet0/2
- description to iosv-1
- switchport access vlan 2
- switchport mode access
- media-type rj45
- negotiation auto
-!
-interface GigabitEthernet0/3
- description GigabitEthernet0/3
+ description GigabitEthernet0/2
  media-type rj45
  negotiation auto
 !
 interface Vlan2
- ip address 10.0.0.2 255.255.255.0
-!
-interface Vlan23
- description test
- no ip address
- shutdown
+ ip address 10.0.0.3 255.255.255.0
 !
 ip forward-protocol nd
 !
@@ -158,10 +150,9 @@ line vty 0 4
  exec-timeout 720 0
  password cisco
  login local
- transport input all
+ transport input telnet ssh
 line vty 5 1500
  login local
- transport input all
 !
 !
 end
